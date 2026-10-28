@@ -87,6 +87,7 @@ def process_file(file_path: str, write_dir: str):
         chain_prot = parsers.process_chain(chain, chain_id)
         chain_dict = dataclasses.asdict(chain_prot)
         chain_dict = du.parse_chain_feats(chain_dict)
+        chain_dict.pop("dssp", None)
         all_seqs.add(tuple(chain_dict['aatype']))
         struct_feats.append(chain_dict)
     if len(all_seqs) == 1:
